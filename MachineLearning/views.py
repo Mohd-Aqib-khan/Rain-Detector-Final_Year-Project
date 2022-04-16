@@ -87,7 +87,3 @@ def state_view(request, sid):
 #     c = RegionRegionDataset(SUBDIVISION=row[0].upper(), YEAR=row[1], JAN=row[2], FEB=row[3], MAR=row[4], APR=row[5], MAY=row[6], JUN=row[7], 
 #     JUL=row[8], AUG=row[9], SEP=row[10], OCT=row[11], NOV=row[12], DEC=row[13], ANNUAL=row[14], Jan_Feb=row[15], Mar_May=row[16], Jun_Sep=row[17], Oct_Dec=row[18],Latitude=row[19],Longitude=row[20])
 #     c.save()
-
-# A_N=RegionDataset.objects.filter(SUBDIVISION="ANDAMAN & NICOBAR ISLANDS")
-# post_list=serializers.serialize("json",A_N)
-# print(post_list)
