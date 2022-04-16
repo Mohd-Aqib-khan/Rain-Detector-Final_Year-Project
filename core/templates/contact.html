@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="contact" id="contact">
+    <div class="container">
+        <div class="row">
+            <!-- Get in touch -->
+            <div class="col-lg-6">
+                <div class="contact_content">
+                    <div class="contact_title">Get in touch with us</div>
+                    <div class="contact_text">
+                        <p>Pellentesque sit amet elementum ccumsan sit amet mattis eget, tristique at leo. Vivamus
+                            massa.Tempor massa et laoreet. Pellentesque sit amet elementum ccumsan sit amet mattis eget,
+                            tristique at leo. Vivamus massa.</p>
+                    </div>
+                    <div class="contact_list">
+                        <ul>
+                            <li>
+                                <div>address:</div>
+                                <div>1481 Creekside Lane Avila Beach, CA 931</div>
+                            </li>
+                            <li>
+                                <div>phone:</div>
+                                <div>+53 345 7953 32453</div>
+                            </li>
+                            <li>
+                                <div>email:</div>
+                                <div>yourmail@gmail.com</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            {% comment %} <div class="col-lg-6">
+                <div class="contact_form_container">
+                    <form action="#" id="contact_form" ,method="post" class="contact_form">
+                        {% for fm in form %}
+                        {% csrf_token %}
+                        <div>
+
+                            {{fm.name}}
+                        
+                        </div>
+                        <small class="text-warning">{{fm.errors|striptags}}</small>
+                        {% endfor %}
+                        <button type="submit" class="contact_button">Send</button>
+                    </form>
+
+                </div>
+            </div> {% endcomment %}
+            <!-- Contact Form -->
+            <div class="col-lg-6">
+                <div class="contact_form_container">
+                    <form action="#" id="contact_form" class="contact_form" method="POST">
+                        {% csrf_token %}
+                        <div style="margin-bottom: 18px">
+                            <input type="text" class="contact_input contact_input_name inpt" placeholder="Your Name"
+                                required="required" name="names">
+                            <div class="input_border"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6" style="margin-bottom: 18px">
+                                <div><input type="text" class="contact_input contact_input_email inpt"
+                                        placeholder="Your E-mail" required="required" name="email">
+                                    <div class="input_border"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6" style="margin-bottom: 18px">
+                                <div><input type="text" class="contact_input contact_input_subject inpt"
+                                        placeholder="Subject" required="required" name="subject">
+                                    <div class="input_border"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div><textarea class="contact_textarea contact_input inpt" placeholder="Message"
+                                required="required" name="message"></textarea>
+                            <div class="input_border" style="bottom:3px"></div>
+                        </div>
+                        <button type="submit" class="contact_button">send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,58 @@
+<div class="destinations" id="destinations">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <div class="section_subtitle">simply amazing places</div>
+                <div class="section_title">
+                    <h2>State</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row destinations_row">
+            <div class="col">
+                <div class="destinations_container item_grid">
+
+                    {% comment %} {% for dest in dests %} {% endcomment %}
+                    {% for st in page_obj %}
+                    <!-- Destination -->
+                    <div class="destination item">
+                        <div class="destination_image">
+                            <img src="{{st.img.url}}" alt="helloooo">
+                            <div class="spec_offer text-center"><a href="{% url 'stateview' st.id %}#stateView">View</a></div>
+                        </div>
+                        <div class="destination_content">
+                            <div class="destination_title"><a href="destinations.html">{{st.name}}</a>
+                            </div>
+                            {% comment %} <div class="destination_subtitle">
+                                <p>{{st.desc}}</p>
+                            </div> {% endcomment %}
+                            {% comment %} <div class="destination_price">From ${{st.price}}</div> {% endcomment %}
+                        </div>
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+        <nav aria-label="...">
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                <a class="page-link" href="?page=1">&laquo;</a>
+                <a class="page-link" href=" ?page={{ page_obj.previous_page_number }}">Previous</a>
+                {% endif %}
+
+
+                <li class="page-item active">
+                    <a class="page-link" href="#">{{ page_obj.number }} <span class="d-block sr-only px-5"></span></a>
+                </li>
+                {% if page_obj.has_next %}
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
+                {% endif %}
+            </ul>
+        </nav>
+
+    </div>
+</div>

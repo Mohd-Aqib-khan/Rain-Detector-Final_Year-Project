@@ -1,0 +1,127 @@
+{% extends 'index.html'  %}
+{% load static %}
+{% block content %}
+<!-- About -->
+
+<div class="about" id="about">
+    <div class="container new">
+        <div class="row">
+            <div class="col text-center">
+                <div class="section_subtitle">simply amazing places</div>
+                <div class="section_title">
+                    <h2>A few words about us</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row about_row">
+            <div class="col-lg-6">
+                <div class="about_content">
+                    <div class="text_highlight">We worked together to design and create this beautiful website that is
+                        based on a machine learning model and it will help to predict the rainfall in a different state
+                        of India. There are four members in our project group.
+                        All the project members have different roles in it. One has to design the machine learning
+                        model, another one has to design the front and backend framework and one has to make a report
+                        card for the project and the last one had to collect the data required for our project.</div>
+                    <div class="about_text">
+                        <p>
+                            This project is based on machine learning and web developement.
+                            State wise rainfall prediction by machine learning algorithms is a machine learning model
+                            that predict the amount of rainfall over a different region/state of India. Rainfall
+                            Prediction is the application of science and technology to predict the state of the
+                            atmosphere for a given location. Rainfall Prediction is one of the difficult and uncertain
+                            tasks that have a significant impact on human society. Timely and accurate forecasting can
+                            proactively help reduce human and financial loss. This study presents a set of experiments
+                            that involve the use of common machine learning techniques to create models that can predict
+                            whether it will rain tomorrow or not based on the rainfall dataset for that day in different
+                            state in India.
+                            By this analysis we can easily classified each state into three category of rain pattern
+                            that is high, medium, and low. All this information are deployed or provide on web
+                            interfaced i.e. website by using Django framework. So that client can easily access that
+                            information on internet.
+
+                        </p>
+                    </div>
+                    {% comment %} <div class="button about_button"><a href="#">read more</a></div> {% endcomment %}
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about_image "><img class="about_img_radius" src="{% static 'images/rain-1.jpg' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Team -->
+
+<div class="team">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <div class="section_subtitle">simply amazing teams</div>
+                <div class="section_title">
+                    <h2>Meet the Team</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row team_row">
+
+            <!-- Team Item -->
+            <div class="col-xl-3 col-md-6 team_col">
+                <div class="team_item d-flex flex-column align-items-center justify-content-start text-center">
+                    <div class="team_image"><img src="{% static 'about/aqib.jpg' %}" alt=""></div>
+                    <div class="team_content">
+                        <div class="team_title"><a href="#">Mohd Aqib Khan</a></div>
+                        <div class="team_text">
+                            <p>I have worked on machine learning algorithms using python and backend using Javascript and Django.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Item -->
+            <div class="col-xl-3 col-md-6 team_col">
+                <div class="team_item d-flex flex-column align-items-center justify-content-start text-center">
+                    <div class="team_image"><img src="{% static 'about/ram.jpg' %}" alt=""></div>
+                    <div class="team_content">
+                        <div class="team_title"><a href="#">Rampravesh Chaudahri</a></div>
+                        <div class="team_text">
+                            <p>My conribution is in this project is mainly on front end using bootstrap  and backend using Django</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Item -->
+            <div class="col-xl-3 col-md-6 team_col">
+                <div class="team_item d-flex flex-column align-items-center justify-content-start text-center">
+                    <div class="team_image"><img src="{% static 'about/sangam.jpeg' %}" alt=""></div>
+                    <div class="team_content">
+                        <div class="team_title"><a href="#">Sangam Lal Gupta</a></div>
+                        <div class="team_text">
+                            <p>My contribution in this project is to prepare project report.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Item -->
+            <div class="col-xl-3 col-md-6 team_col">
+                <div class="team_item d-flex flex-column align-items-center justify-content-start text-center">
+                    <div class="team_image"><img src="{% static 'about/nishu.jpeg' %}" alt=""></div>
+                    <div class="team_content">
+                        <div class="team_title"><a href="#">Nishu Kumar Singh</a></div>
+                        <div class="team_text">
+                            <p>My contribution in this project to collect the required data and report preparation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

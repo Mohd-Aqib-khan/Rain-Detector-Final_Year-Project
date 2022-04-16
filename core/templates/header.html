@@ -1,0 +1,40 @@
+<header class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="header_content d-flex flex-row align-items-center justify-content-start">
+                    <div class="header_content_inner d-flex flex-row align-items-end justify-content-start">
+                        <div class="logo"><a href="{% url 'home' %}">Rainfall</a></div>
+                        <nav class="main_nav">
+                            <ul class="d-flex flex-row align-items-start justify-content-start">
+                                <li class="{{home}}"><a href=" {% url 'home' %} ">Home</a></li>
+                                <li><a href="{% url 'statecmp' %}#statecmp">State Comparsion</a></li>
+                                <li class="header_news"><a href="{% url 'home' %}#news">News</a></li>
+                                <li class="{{contact}}"><a href=" {% url 'contact' %}#contact">Contact</a></li>
+                                <li class="{{about}}"><a href="{% url 'about' %}#about">About us</a></li>
+                                <li><a href="#">Signup</a></li>
+                            </ul>
+                        </nav>
+
+                        <!-- Hamburger -->
+
+                        <div class="hamburger ml-auto text-black">
+                            <i class="fa fa-bars icon-c" aria-hidden="true"></i>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header_social d-flex flex-row align-items-center justify-content-start">
+        <ul class="d-flex flex-row align-items-start justify-content-start">
+            <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+            <li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+            <li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+        </ul>
+    </div>
+</header>

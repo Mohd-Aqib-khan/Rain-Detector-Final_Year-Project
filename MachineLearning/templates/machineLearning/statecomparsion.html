@@ -1,0 +1,594 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid py-5">
+    <div class="home_search_container rounded" id="background_container"
+        style="top: 0px; background: rgba(0,0,0,0.26); position: static; width: inherit;min-height:1000px;">
+        <div class="home_search_title px-3">RainFall Comparsion of Two States</div>
+        <div class="home_search_content px-4 rounded-3">           
+            <div class="row align-items-start justify-content-start">
+                <div class="col-lg-3">
+
+                    <div class="row justify-content-center">
+                        <input type="text" id="firstState" style="width:80%; margin-right:5px;" class="search_input search_input_1"
+                            placeholder="Select First State" required="required" onclick="showList(0)">
+                    </div>
+                    <div class="row mt-2">
+                        <ul id="stateFirst1" class="col-md-5" style="position: relative; max-height: 377px;
+                        width:100%;
+                        {% comment %} left: 39px; {% endcomment %}
+                        display:none;
+                        overflow-y: scroll;
+                        background-color: white;
+                        margin-top: -10px;">
+                            {% for item in data.stateList %}
+                            <li style="margin-bottom: 5px;">
+                                <button class="" type="button" onclick="check(1,{{forloop.counter0}})" style="
+                                    width: -webkit-fill-available;
+                                    border-radius: 14px;
+                                    height: 50px;
+                                    background: #f2f5f6;
+                                    border: none;
+                                    outline: none;
+                                    font-family: 'Oswald', sans-serif;
+                                    font-size: 14px !important;
+                                    font-weight: 500 !important;
+                                    color: #72728c !important;
+                                    text-align: center;
+                                    padding-top: 14px;
+                                ">
+                                    <pre style="font-family: 'Oswald', sans-serif;
+                                        font-size: 14px !important;
+                                        margin-left: 0px;
+                                        text-align: center;
+                                        font-weight: 500 !important;">{{item | safe}}</pre>
+                                </button>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        {% comment %} <canvas id="myChart" width="700" height="600" style="left: 0;
+                        right: 0;
+                        padding: 15px;
+                        background-color: white;
+                        display: none;
+                        margin-left: auto;
+                        margin-right: auto;">
+                        </canvas> {% endcomment %}
+                    </div>
+                    <div class="row mt-4" id="firststateDetial" style="display: none;">
+                        <div class="card" style="width: 19rem;">
+                            <canvas id="myFirstStateLineChart" width="250" height="300"></canvas>
+                            <div class="card-body mt-3" style="padding: 0;">
+                              <h5 class="card-title" id="first-state-title"></h5>
+                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                              <div id="wrapperFirst"></div>
+                            </div>
+                          </div>
+                    </div>
+
+                </div>
+
+
+                <div class="col-lg-3">
+
+                    <div class="row justify-content-center">
+                        <input type="text" id="secondState" style="width:80%; margin-right:5px;" class="search_input search_input_1"
+                            placeholder="Select Second State" required="required" onclick="showList(1)">
+                    </div>
+                    <div class="row mt-2">
+                        <ul id="stateSecond2" class="col-md-5" style="position: relative; max-height: 377px;
+                            width: 100%;
+                            display:none;
+                            overflow-y: scroll;
+                            background-color: white;
+                        margin-top: -10px;">
+                            {% for item in data.stateList %}
+                            <li style="margin-bottom: 5px;">
+                                <button class="" type="button" onclick="check(2,{{forloop.counter0}})" style="
+                                width: -webkit-fill-available;
+                                border-radius: 14px;
+                                height: 50px;
+                                background: #f2f5f6;
+                                border: none;
+                                outline: none;
+                                padding-left: 17px;
+                                font-family: 'Oswald', sans-serif;
+                                font-size: 14px !important;
+                                font-weight: 500 !important;
+                                color: #72728c !important;
+                                text-align: center;
+                                padding-right: 15px;
+                                padding-top: 14px;
+                                ">
+                                    <pre style="font-family: 'Oswald', sans-serif;
+                                    font-size: 14px !important;
+                                    margin-left: 0px;
+                                    text-align: center;
+                                    font-weight: 500 !important;">{{item | safe}}</pre>
+                                </button>
+                            </li>
+                            {% endfor %}
+                        </ul>
+
+                    </div>
+                    <div class="row mt-4" id="secondstateDetail" style = "display: none;">
+                        <div class="card" style="width: 19rem;">
+                            <canvas id="mySecondStateLineChart" width="250" height="300"></canvas>
+                                <div class="card-body mt-3" style="padding: 0;">
+                                  <h5 class="card-title" id="second-state-title"></h5>
+                                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                  <div id="wrapperSecond"></div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="col-lg-3">
+                    <div class="row justify-content-center">
+                        <input type="text" id="parameterListItem" style="width:80%; margin-right:5px;" class="search_input search_input_1"
+                            placeholder="Select the Parameter" required="required" onclick="showList(2)">
+
+                    </div>
+                    <div class="row mt-2">
+
+                        <ul id="paraMeter" class="col-md-5" style="position: relative; max-height: 377px;
+            width: 100%;
+            display:none;
+            overflow-y: scroll;
+            background-color: white;
+            margin-top: -10px;">
+                            {% for item in data.parameter %}
+                            <li style="margin-bottom: 5px;">
+                                <button class="" type="button" onclick="check(3,{{forloop.counter0}})" style="
+                width: -webkit-fill-available;
+                border-radius: 14px;
+                height: 50px;
+                background: #f2f5f6;
+                border: none;
+                outline: none;
+                padding-left: 17px;
+                font-family: 'Oswald', sans-serif;
+                font-size: 14px !important;
+                font-weight: 500 !important;
+                color: #72728c !important;
+                text-align: center;
+                padding-right: 15px;
+                padding-top: 14px;
+            ">
+                                    <pre style="font-family: 'Oswald', sans-serif;
+                    font-size: 14px !important;
+                    margin-left: 0px;
+                    text-align: center;
+                    font-weight: 500 !important;">{{item | safe}}</pre>
+                                </button>
+                            </li>
+                            {% endfor %}
+                        </ul>
+
+                    </div>
+
+
+                </div>
+                <div class="col-lg-3"><button class="home_search_button" onclick="fetchData('line')">search</button></div>
+            </div>
+
+            <div class="row mt-5" id="myChartRow" style="display: none">
+                <div class="row">
+                    <div class="col-lg-2" style="margin-left: auto;">
+                        <div class="dropdown ml-auto">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Change Graph
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" onclick="fetchData('bar')" >Bar Graph</a></li>
+                            <li><a class="dropdown-item" onclick="fetchData('line')">Line Graph</a></li>
+                            <li><a class="dropdown-item" onclick="fetchData('pie')">Pie Graph</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <canvas id="myChart" width="700" height="600" style="left: 0;
+                right: 0;
+                padding: 15px;
+                display: none;
+                background-color: white;
+                margin-left: auto;
+                margin-right: auto;">
+                </canvas>
+                <canvas id="myBarChart" height="600" style="width: 100%; 
+                left: 0;
+                right: 0;
+                padding: 15px;
+                display: none;
+                max-width: 700px;
+                max-height: 600px;
+                background-color: white;
+                margin-left: auto;
+                margin-right: auto;"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const datasets = {{data.RegionDataset | safe}};
+    let myChart = "";
+    let stateFirst = "";
+    let stateSecond = "";
+    let myFirstStateChart = "";
+    let mySecondStateChart = "";
+    let gridFirst = "";
+    let gridSecond = "";
+    let para = "";
+    let count = 0;
+    let viewFirstStateCard = 0;
+    let viewSecondStateCard = 0;
+    let arr = {{data.stateList | safe}};
+    let arrparameter = {{data.parameter | safe}};
+    const firstStateTitle = document.getElementById("first-state-title");
+    const secondStateTitle = document.getElementById("second-state-title");
+    const firstStateCard = document.getElementById("firststateDetial");
+    const secondStateCard = document.getElementById("secondstateDetail");
+    const allRegionData = {{data.AllRegionData | safe}};
+
+    function showList(index) {
+        if (index == 0) {
+
+            document.getElementById("stateFirst1").style.display = "block";
+            document.getElementById("myChartRow").style.display = "none";
+            document.getElementById("stateSecond2").style.display = "none";
+            document.getElementById("paraMeter").style.display = "none";
+
+
+        }
+        if (index == 1) {
+            document.getElementById("stateFirst1").style.display = "none";
+
+            document.getElementById("stateSecond2").style.display = "block";
+            document.getElementById("myChartRow").style.display = "none";
+            document.getElementById("paraMeter").style.display = "none";
+
+
+        }
+        if (index == 2) {
+            document.getElementById("stateFirst1").style.display = "none";
+
+            document.getElementById("stateSecond2").style.display = "none";
+            document.getElementById("paraMeter").style.display = "block";
+            document.getElementById("myChartRow").style.display = "none";
+        }
+    }
+
+    function check(num, stateIndex) {
+
+        if (num == 1) {
+            document.getElementById("firstState").value = arr[stateIndex];
+            document.getElementById("stateFirst1").style.display = "none";
+            stateFirst = arr[stateIndex];
+            firstStateCard.style.display = "block";
+            firstStateTitle.innerHTML = arr[stateIndex];
+            
+            const dataLine = []
+            datasets.forEach((value,index)=>{
+                if(value.fields.SUBDIVISION==stateFirst){
+                    dataLine.push({
+                        x:value.fields.YEAR,
+                        y:value.fields.ANNUAL
+                    })
+                }
+            })
+            if(myFirstStateChart!=""){
+                myFirstStateChart.destroy();
+                myFirstStateChart = lineChart(dataLine, '#2266a8', "myFirstStateLineChart",stateFirst);
+            }
+            else{
+                myFirstStateChart =  lineChart(dataLine, '#2266a8', "myFirstStateLineChart",stateFirst);
+            }
+            allRegionData.forEach((value,index)=>{
+                if(value.SUBDIVISION==stateFirst){
+                    const data = Object.entries(value);
+                    data.shift();
+                    data.map((value)=>{
+                        value[1] = parseFloat(value[1]).toFixed(2);
+                        return value;
+                    })
+                    if(gridFirst==""){
+                        gridFirst = table(data,["Parameter","Value (Avg)"],"wrapperFirst",4);
+                        console.log("grid",gridFirst);
+                    }else{
+                        gridFirst.updateConfig({
+                            data: data
+                        }).forceRender();
+                    }
+
+                }
+            }) 
+            //document.getElementById("stateSecond2").style.left = "455px";
+        } else if (num == 2) {
+            document.getElementById("secondState").value = arr[stateIndex];
+            stateSecond = arr[stateIndex];
+            document.getElementById("stateSecond2").style.display = "none";
+            secondStateCard.style.display = "block";
+            secondStateTitle.innerHTML = stateSecond;
+            const allRegionData = {{data.AllRegionData | safe}};
+            const dataLine = []
+            datasets.forEach((value,index)=>{
+                if(value.fields.SUBDIVISION==stateSecond){
+                    dataLine.push({
+                        x:value.fields.YEAR,
+                        y:value.fields.ANNUAL
+                    })
+                }
+            })
+            if(mySecondStateChart !=""){
+                mySecondStateChart.destroy();
+                mySecondStateChart = lineChart(dataLine, '#f67019', "mySecondStateLineChart",stateSecond);    
+            }else{
+                mySecondStateChart = lineChart(dataLine, '#f67019', "mySecondStateLineChart",stateSecond);
+            }
+            
+            allRegionData.forEach((value,index)=>{
+                if(value.SUBDIVISION==stateSecond){
+                    const data = Object.entries(value);
+                    data.shift();
+                    data.map((value)=>{
+                        value[1] = parseFloat(value[1]).toFixed(2);
+                        return value;
+                    })
+                    if(gridSecond==""){
+                        gridSecond = table(data,["Parameter","Value (Avg)"],"wrapperSecond",4);
+                    }else{
+                        gridSecond.updateConfig({
+                            data: data
+                        }).forceRender();
+                    }
+
+                }
+            }) 
+        } else if (num == 3) {
+            document.getElementById("parameterListItem").value = arrparameter[stateIndex];
+            para = arrparameter[stateIndex];
+            document.getElementById("paraMeter").style.display = "none";
+        }
+    }
+
+    function fetchData(type) {
+        document.getElementById("myChartRow").style.display = "block";
+        document.getElementById("stateFirst1").style.display = "none";
+        document.getElementById("stateSecond2").style.display = "none";
+        document.getElementById("paraMeter").style.display = "none";
+        firstStateCard.style.display = "none";
+        secondStateCard.style.display = "none";
+        if (count == 1) {
+            myChart.destroy();
+        }
+        count = 1;
+        // auto formatted data 3
+        //dataset = {{data.datasets | safe}};
+        
+
+        //const da1 = dataset[stateFirst][arrparameter.indexOf(para)];
+        if(type=="line"){
+            document.getElementById("myChart").style.display = "block";
+            document.getElementById("myBarChart").style.display = "none";
+            let da1 = [];
+            datasets.forEach((value, index) => {
+                if (value.fields.SUBDIVISION == stateFirst) {
+                    da1.push({
+                        x: value.fields.YEAR,
+                        y: value.fields[para]
+                    })
+                }
+            })
+
+
+            let da2 = [];
+            datasets.forEach((value, index) => {
+                if (value.fields.SUBDIVISION == stateSecond) {
+                    da2.push({
+                        x: value.fields.YEAR,
+                        y: value.fields[para]
+                    })
+                }
+            })
+            // auto formatted data 4
+            let data = da1;
+            let data2 = da2;
+            const totalDuration = 10000;
+            const delayBetweenPoints = totalDuration / data.length;
+            const previousY = (ctx) => ctx.index === 0 ? ctx.chart.scales.y.getPixelForValue(100) : ctx.chart
+                .getDatasetMeta(ctx.datasetIndex).data[ctx.index - 1].getProps(['y'], true).y;
+            const ctx = document.getElementById('myChart').getContext('2d');
+
+            myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    datasets: [{
+                            label: stateFirst,
+                            borderColor: 'rgba(153, 102, 255, 0.8)',
+                            borderWidth: 1,
+                            radius: 3,
+                            data: data,
+                        },
+                        {
+                            label: stateSecond,
+                            borderColor: 'rgba(25, 159, 164, 0.8)',
+                            borderWidth: 1,
+                            radius: 3,
+                            data: data2,
+                        }
+                    ]
+                },
+                options: {
+                    animation: {
+                        x: {
+                            type: 'number',
+                            easing: 'linear',
+                            duration: delayBetweenPoints,
+                            from: NaN, // the point is initially skipped
+                            delay(ctx) {
+                                if (ctx.type !== 'data' || ctx.xStarted) {
+                                    return 0;
+                                }
+                                ctx.xStarted = true;
+                                return ctx.index * delayBetweenPoints;
+                            }
+                        },
+                        y: {
+                            type: 'number',
+                            easing: 'linear',
+                            duration: delayBetweenPoints,
+                            from: previousY,
+                            delay(ctx) {
+                                if (ctx.type !== 'data' || ctx.yStarted) {
+                                    return 0;
+                                }
+                                ctx.yStarted = true;
+                                return ctx.index * delayBetweenPoints;
+                            }
+                        }
+                    },
+                    responsive: false,
+                    interaction: {
+                        intersect: false
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'State Comparsion'
+                        }
+                    },
+
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            title: {
+                                display: true,
+                                text: 'Year(1900-2017)'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: `${para} amount of Rainfall`
+                            }
+                        }
+
+                    }
+                }
+            });
+        }else if(type=="bar"){
+            document.getElementById("myBarChart").style.display = "block";
+            document.getElementById("myChart").style.display = "none";
+            let data1 = [];
+            let data2 = [];
+            allRegionData.forEach((value, index) => {
+                if (value.SUBDIVISION == stateFirst) {
+                    data1.push(value[para]);
+                    console.log("data1:-",data1);
+                }
+                if(value.SUBDIVISION == stateSecond){
+                    data2.push(value[para]);
+                    console.log("data2:-",data2);
+                }
+            })
+            let columns = [];
+            columns.push(para);
+            console.log("columns:-",columns);
+            myChart = barChart([...data1],[...data2],"myBarChart" ,stateFirst,stateSecond,columns); 
+        }else if(type=="pie"){
+            document.getElementById("myChart").style.display = "none";
+            document.getElementById("myBarChart").style.display = "block";
+            let data1 = [];
+            let data2 = [];
+            allRegionData.forEach((value, index) => {
+                if (value.SUBDIVISION == stateFirst) {
+                    data1.push(value[para]);
+                    console.log("data1:-",data1);
+                }
+                if(value.SUBDIVISION == stateSecond){
+                    data2.push(value[para]);
+                    console.log("data2:-",data2);
+                }
+            })
+            myChart = pieChart([...data1, ...data2], "myBarChart", stateFirst, stateSecond, para);
+        }
+        
+
+
+
+        /*myChart.data.datasets[0].data = data; // Would update the first dataset's value of 'March' to be 50
+        myChart.data.datasets[1].data = data2;
+        myChart.options.animation = {
+                x: {
+                    type: 'number',
+                    easing: 'easeOutQuart',
+                    duration: delayBetweenPoints,
+                    from: NaN, // the point is initially skipped
+                    delay(ctx) {
+                        if (ctx.type !== 'data' || ctx.xStarted) {
+                            return 0;
+                        }
+                        ctx.xStarted = true;
+                        return ctx.index * delayBetweenPoints;
+                    } 
+                },
+                y: {
+                    type: 'number',
+                    easing: 'easeOutQuart',
+                    duration: delayBetweenPoints,
+                    from: previousY,
+                    delay(ctx) {
+                        if (ctx.type !== 'data' || ctx.yStarted) {
+                            return 0;
+                        }
+                        ctx.yStarted = true;
+                        return ctx.index * delayBetweenPoints;
+                    }
+                } 
+        }
+        myChart.update('active'); */
+
+
+
+
+    }
+</script>
+<script>
+    function table(dataset, col, id, limitValue) {
+        const grid = new gridjs.Grid({
+            columns: col,
+            data: dataset,
+            pagination: {
+                enabled: true,
+                limit: limitValue,
+                summary: false
+            },
+            style: {
+                table: {
+                    border: '3px solid #ccc'
+                },
+                th: {
+                    'background-color': 'rgba(0, 0, 0, 0.1)',
+                    color: '#000',
+                    'border-bottom': '3px solid #ccc',
+                    'text-align': 'center'
+                },
+                td: {
+                    'text-align': 'center',
+                    'width': "10px"
+                }
+            }
+        }).render(document.getElementById(id));
+        console.log("grid from gridTable:-", grid);
+        return grid;
+    }
+</script>
+{% endblock content %}

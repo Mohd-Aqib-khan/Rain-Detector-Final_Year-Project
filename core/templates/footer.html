@@ -1,0 +1,162 @@
+{% load static %}
+<footer class="footer pb-2">
+    <div class="parallax_background parallax-window" data-parallax="scroll"
+        data-image-src="{% static 'images/footer-2.jpg' %}" data-speed="0.8">
+    </div>
+    {% comment %} <img src="https://source.unsplash.com/1920x750/?rain" class="d-block w-100" alt="...">
+    {% endcomment %}
+
+    <div class="container container-profile">
+
+        {% comment %} profile card start{% endcomment %}
+
+        <div class="row profile-row  d-flex justify-content-center">
+            <div class="col-lg-4">
+                <div class="card-profile p-0">
+                    <div class="card-image"> <img
+                            src="{% static 'about/aqib.jpg' %}"
+                            alt=""> </div>
+                    <div class="card-content d-flex flex-column align-items-center">
+                        <h4 class="pt-2">Mohd Aqib Khan</h4>
+                        <h5>Machine Learning Developer</h5>
+                        <ul class="social-icons d-flex justify-content-center">
+                            <li style="--i:1"> <a href="https://www.facebook.com/"> <span
+                                        class="fab fa-facebook"></span> </a> </li>
+                            <li style="--i:2"> <a href="https://www.twitter.com/"><span
+                                        class="fab fa-twitter"></span></span> </a> </li>
+                            <li style="--i:3"> <a href="https://www.instagram.com/"> <span
+                                        class="fab fa-instagram"></span> </a> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card-profile p-0">
+                    <div class="card-image"> <img
+                            src="{% static 'about/ram1.jpeg' %}"
+                            alt=""> </div>
+                    <div class="card-content d-flex flex-column align-items-center">
+                        <h4 class="pt-2">Rampravesh Chaudhari</h4>
+                        <h5>Front End and Backend </h5>
+                        <ul class="social-icons d-flex justify-content-center">
+                            <li style="--i:1"> <a href="https://www.facebook.com/"> <span
+                                        class="fab fa-facebook"></span> </a> </li>
+                            <li style="--i:2"> <a href="https://www.twitter.com/"> <span class="fab fa-twitter"></span>
+                                </a> </li>
+                            <li style="--i:3"> <a href="https://www.linkedin.com/"> <span
+                                        class="fab fa-instagram"></span> </a> </li>
+                            <li style="--i:3"> <a href="https://www.github.com/rickwarty"> <span
+                                        class="fab fa-github"></span> </a> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% comment %} Profile card end {% endcomment %}
+
+        <div class="row mt-5">
+            <div class="col">
+                <div class="newsletter">
+                    <div class="newsletter_title_container text-center">
+                        <div class="newsletter_title">Subscribe to our newsletter to
+                            get the latest
+                            trends &
+                            news</div>
+                        <div class="newsletter_subtitle">Join our database NOW!
+                        </div>
+                    </div>
+                    <div class="newsletter_form_container">
+                        <form action="#"
+                            class="newsletter_form d-flex flex-md-row flex-column align-items-start justify-content-between"
+                            id="newsletter_form">
+                            <div class="d-flex flex-md-row flex-column align-items-start justify-content-between">
+                                <div><input type="text" class="newsletter_input newsletter_input_name"
+                                        id="newsletter_input_name" placeholder="Name" required="required">
+                                    <div class="input_border"></div>
+                                </div>
+                                <div><input type="email" class="newsletter_input newsletter_input_email"
+                                        id="newsletter_input_email" placeholder="Your e-mail" required="required">
+                                    <div class="input_border"></div>
+                                </div>
+                            </div>
+                            <div><button class="newsletter_button">subscribe</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="row footer_contact_row">
+            <div class="col-xl-10 offset-xl-1">
+                <div class="row d-flex justify-content-center">
+
+                    <!-- Footer Contact Item -->
+                    <div class="col-xl-4 footer_contact_col">
+                        <div
+                            class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+                            <div class="footer_contact_icon"><img src="{% static 'images/sign.svg' %}" alt="">
+                            </div>
+                            <div class="footer_contact_title">give us a call</div>
+                            <div class="footer_contact_list">
+                                <ul>
+                                    <li>Office Landline: +44 5567 32 664 567</li>
+                                    <li>Mobile: +44 5567 89 3322 332</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Footer Contact Item -->
+                    {% comment %} <div class="col-xl-4 footer_contact_col">
+                        <div
+                            class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+                            <div class="footer_contact_icon"><img src="{% static 'images/trekking.svg' %}" alt="">
+                            </div>
+                            <div class="footer_contact_title">come & drop by</div>
+                            <div class="footer_contact_list">
+                                <ul style="max-width:190px">
+                                    <li>4124 Barnes Street, Sanford, FL 32771</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div> {% endcomment %}
+
+                    <!-- Footer Contact Item -->
+                    <div class="col-xl-4 footer_contact_col">
+                        <div
+                            class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+                            <div class="footer_contact_icon"><img src="{% static 'images/around.svg' %}" alt="">
+                            </div>
+                            <div class="footer_contact_title">send us a message
+                            </div>
+                            <div class="footer_contact_list">
+                                <ul>
+                                    <li>raindetector786@gmail.com</li>
+                                    {% comment %} <li>Office@yourbusinessname.com</li> {% endcomment %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col text-center">
+        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+        Copyright &copy;
+        <script>
+            document.write(new Date().getFullYear());
+        </script> All rights
+        reserved | This template
+        is made <i class="" aria-hidden="true"></i> by <a href="" target="_blank">Unity Developer</a>
+        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+    </div>
+</footer>

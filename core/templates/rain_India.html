@@ -1,0 +1,149 @@
+{% load static %}
+<div class="container">
+    <h5 class="mt-4 text-center border border-warning text-dark py-3">Rainfall In India</h5>
+    <div class="row justify-content-between">
+        <div class="col-lg-5">
+            <canvas id="myLineChart"  height="550" style="width: 100%">
+            </canvas>
+        </div>
+        <div class="col-lg-5">
+            <canvas id="myBarChart"  height="550" style="width: 100%">
+            </canvas> 
+        </div>
+    </div>
+</div>
+<script>
+    const datase = {{line_chart}};
+    let data = [];
+    for (let [key, value] of Object.entries(datase)) {
+      data.push({
+        x: key,
+        y: value
+      });
+    }
+    const totalDuration = 10000;
+    const delayBetweenPoints = totalDuration / data.length;
+    const previousY = (ctx) => ctx.index === 0 ? ctx.chart.scales.y.getPixelForValue(100) : ctx.chart.getDatasetMeta(ctx
+      .datasetIndex).data[ctx.index - 1].getProps(['y'], true).y;
+    const ctx = document.getElementById('myLineChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        datasets: [{
+            label: "Annual Rainfall",
+            borderColor: '#2266a8',
+            borderWidth: 1,
+            radius: 2,
+            data: data,
+          }
+          /*{
+              label: stateSecond,
+              borderColor: '#f67019',
+              borderWidth: 1,
+              radius: 3,
+              data: data2,
+          }*/
+        ]
+      },
+      options: {
+        animation: {
+          x: {
+            type: 'number',
+            easing: 'linear',
+            duration: delayBetweenPoints,
+            from: NaN, // the point is initially skipped
+            delay(ctx) {
+              if (ctx.type !== 'data' || ctx.xStarted) {
+                return 0;
+              }
+              ctx.xStarted = true;
+              return ctx.index * delayBetweenPoints;
+            }
+          },
+          y: {
+            type: 'number',
+            easing: 'linear',
+            duration: delayBetweenPoints,
+            from: previousY,
+            delay(ctx) {
+              if (ctx.type !== 'data' || ctx.yStarted) {
+                return 0;
+              }
+              ctx.yStarted = true;
+              return ctx.index * delayBetweenPoints;
+            }
+          }
+        },
+        responsive: false,
+        interaction: {
+          intersect: false
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Overall Annual Rainfall in India'
+          },
+        },
+        scales: {
+          x: {
+            type: 'linear'
+          }
+        }
+      }
+    });
+</script>
+<script>
+    let bar_data = {{bar_chart}};
+    const ctxLine = document.getElementById('myBarChart').getContext('2d');
+    const myChartLine = new Chart(ctxLine, {
+      type: 'bar',
+      data: {
+        labels: ['Jan', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+        datasets: [{
+          /* barPercentage: 0.5,
+          barThickness: 6,
+          maxBarThickness: 8,
+          minBarLength: 2,*/
+          data: bar_data,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Overall Monthy Rainfall in India'
+          },
+        },
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+</script> 
