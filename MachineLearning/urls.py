@@ -3,6 +3,6 @@ from MachineLearning import views
 
 urlpatterns = [
     path('statecmp/', views.stateComparsion, name='statecmp'),
-    path('stateview/<int:sid>/', views.state_view, name='stateview'),
-    
+    path('rainprediction/', views.rainPredication, name='rainpred'),
+    path('stateview/<int:sid>/', views.state_view, name='stateview'),    
 ]

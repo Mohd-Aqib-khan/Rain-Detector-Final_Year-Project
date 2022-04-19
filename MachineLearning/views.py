@@ -36,7 +36,8 @@ def stateComparsion(request):
 def index(request):
     return render(request, 'machineLearning/index.html')
 
-
+def rainPredication(request):
+    return render(request,"machineLearning/prediction.html")
 
 def state_view(request, sid):
     #global annual_rain_d,annual_data, year_d, annual_bar_data
