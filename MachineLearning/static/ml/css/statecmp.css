@@ -4,3 +4,10 @@
 .dropdown-item{
     font-family: "Oswald", sans-serif;
 }
+
+@media only screen and (max-width: 450px) {
+    /* For mobile phones: */
+    [class*="home_search_content"] {
+      width: 100%;
+    }
+  }
