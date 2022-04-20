@@ -1,13 +1,18 @@
-{% extends 'base.html' %}
+{% extends 'main.html' %}
 {% load static %}
+
 {% block content %}
-
-
+<div class="home">
+    <div class="background_image">
+        <img src="{% static 'top/phone2.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+</div>
 <div class="contact" id="contact">
     <div class="container">
         <div class="row">
             <!-- Get in touch -->
-            <div class="col-lg-6">
+            <h2 class="text-center border-bottom border-secondary pb-3">Contact Us</h2>
+            <div class="col-lg-6 ">
                 <div class="contact_content">
                     <div class="contact_title">Get in touch with us</div>
                     <div class="contact_text">
@@ -43,7 +48,7 @@
                         <div>
 
                             {{fm.name}}
-                        
+
                         </div>
                         <small class="text-warning">{{fm.errors|striptags}}</small>
                         {% endfor %}

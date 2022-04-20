@@ -1,8 +1,13 @@
-{% extends 'base.html' %}
+{% extends 'main.html' %}
 {% load static %}
 {% block content %}
+<div class="home">
+    <div class="background_image">
+        <img src="{% static 'top/statecmp1.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+</div>
 
-<div class="container-fluid py-5">
+<div class="container-fluid py-5 bg-white">
     <div class="home_search_container rounded" id="background_container"
         style="top: 0px; background: rgba(0,0,0,0.26); position: static; width: inherit;min-height:1000px;">
         <div class="home_search_title px-3">RainFall Comparsion of Two States</div>

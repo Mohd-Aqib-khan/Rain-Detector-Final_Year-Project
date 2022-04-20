@@ -8,3 +8,16 @@
    padding-left: 1rem;
    padding-right: 1rem;
 }
+
+
+
+.carousel-caption h3{
+   font-size: 1px !important;
+   font-size: 3vw !important;
+}
+
+.header_content_inner .logo a{
+   font-size: 3vw !important;
+   font-family: 'Montserat','sans-serif'; 
+
+}
