@@ -6,10 +6,83 @@
     <div class="home_search_container rounded" id="background_container"
         style="top: 0px; background: rgba(0,0,0,0.26); position: static; width: inherit;min-height:1000px;">
         <div class="home_search_title px-3">Rain Prediction</div>
-        <div class="home_search_content px-4 rounded-3" style="width: 60%; left: 0; right: 0; margin-left: auto; margin-right: auto;">           
-            
+        <div class="row home_search_content_prediction px-4 rounded-3">           
+            <div class="row justify-content-center mt-2 mb-3">
+                <input type="text" id="jan_feb" style="width:80%; margin-right:5px;" class="search_input search_input_1"
+                    placeholder="Select First State" required="required">
+            </div>
+            <div class="row justify-content-center mb-3">
+                <input type="text" id="mar_may" style="width:80%; margin-right:5px;" class="search_input search_input_1"
+                    placeholder="Select First State" required="required">
+            </div>
+            <div class="row justify-content-center mb-3">
+                <input type="text" id="jun_sep" style="width:80%; margin-right:5px;" class="search_input search_input_1"
+                    placeholder="Select First State" required="required">
+            </div>
+            <div class="row justify-content-center mb-3">
+                <input type="text" id="oct_dec" style="width:80%; margin-right:5px;" class="search_input search_input_1"
+                    placeholder="Select First State" required="required">
+            </div>
+            <div class="row justify-content-center mb-3">
+                <div class="col-lg-3">
+                    <button class="home_search_button" onclick="prediction()">search</button>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div id="wrapperSecond"></div>
         </div>
     </div>
 </div>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+    const prediction = () =>{
+        const jan_feb = document.getElementById("jan_feb").value;
+        const mar_may = document.getElementById("mar_may").value;
+        const jun_sep = document.getElementById("jun_sep").value;
+        const oct_dec = document.getElementById("oct_dec").value;
+        var datavalue = {jan_feb,mar_may,jun_sep,oct_dec};
+        $.ajax({
+            url : "/ml/make-prediction", // the endpoint
+            type : "POST", // http method
+            data : { 'dataset' : JSON.stringify(datavalue), 'csrfmiddlewaretoken': '{{csrf_token}}'}, // data sent with the post request
+    
+            // handle a successful response
+            success : function(json) {
+                console.log(json); // log the returned json to the console
+                console.log("success"); // another sanity check
+            },
+        });
+    }
+</script>
+<script>
+    function table(dataset, col, id, limitValue) {
+        const grid = new gridjs.Grid({
+            columns: col,
+            data: dataset,
+            pagination: {
+                enabled: true,
+                limit: limitValue,
+                summary: false
+            },
+            style: {
+                table: {
+                    border: '3px solid #ccc'
+                },
+                th: {
+                    'background-color': 'rgba(0, 0, 0, 0.1)',
+                    color: '#000',
+                    'border-bottom': '3px solid #ccc',
+                    'text-align': 'center'
+                },
+                td: {
+                    'text-align': 'center',
+                    'width': "10px"
+                }
+            }
+        }).render(document.getElementById(id));
+        console.log("grid from gridTable:-", grid);
+        return grid;
+    }
+</script>
 {% endblock content %}

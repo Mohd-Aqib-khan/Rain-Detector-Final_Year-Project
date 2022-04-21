@@ -2,6 +2,7 @@ from django.shortcuts import render
 from core.models import State,Dataset,RegionDataset
 from django.core import serializers
 from django.db.models import Avg, Count
+from django.http import JsonResponse
 import json as simplejson
 import os
 import numpy as np
@@ -39,6 +40,11 @@ def index(request):
 def rainPredication(request):
     return render(request,"machineLearning/prediction.html")
 
+def makePrediction(request):
+    data = "working"
+    return JsonResponse({"data": data});
+    #return render(request,"machineLearning/prediction.html",{"data": data})
+    
 def state_view(request, sid):
     #global annual_rain_d,annual_data, year_d, annual_bar_data
     # Loading Data from local disk 
