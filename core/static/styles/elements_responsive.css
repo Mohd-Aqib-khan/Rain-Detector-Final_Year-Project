@@ -195,16 +195,16 @@
 	{
 		margin-right: 0px;
 	}
-	.newsletter_form > div:first-child
+	.newsletter_form > div:nth-child(2)
 	{
 		width: 100%;
 	}
-	.newsletter_form > div:first-child > div:first-child
+	.newsletter_form > div:nth-child(2) > div:first-child
 	{
 		width: 100%;
 		margin-bottom: 15px;
 	}
-	.newsletter_form > div:first-child > div:last-child
+	.newsletter_form > div:nth-child(2) > div:last-child
 	{
 		width: 100%;
 		margin-bottom: 20px;

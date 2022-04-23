@@ -1130,13 +1130,13 @@ section {
 .newsletter_form > div:not(:last-child) {
    margin-right: 15px;
 }
-.newsletter_form > div:first-child {
+.newsletter_form > div:nth-child(2) {
    width: calc(100% - 176px);
 }
-.newsletter_form > div:first-child > div:first-child {
+.newsletter_form > div:nth-child(2) > div:first-child {
    width: calc((100% - 15px) * 0.35);
 }
-.newsletter_form > div:first-child > div:last-child {
+.newsletter_form > div:nth-child(2) > div:last-child {
    width: calc((100% - 15px) * 0.65);
 }
 .newsletter_form .input_border {
