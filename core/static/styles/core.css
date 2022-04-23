@@ -8,3 +8,12 @@
    padding-left: 1rem;
    padding-right: 1rem;
 }
+.newsletter_button{
+   transition: all ease 1000ms;
+}
+.newsletter_button:hover{
+   background-color: rgba(210, 40, 46, 0.708);
+   border:2px solid rgb(243, 243, 243);
+
+   
+}

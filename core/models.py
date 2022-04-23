@@ -1,4 +1,3 @@
-from distutils.command.upload import upload
 import email
 from datetime import datetime
 from email import message
@@ -88,3 +87,10 @@ class RegionDataset(models.Model):
     Oct_Dec = models.FloatField(db_column='Oct-Dec')
     Latitude = models.FloatField()
     Longitude = models.FloatField()
+    
+class SubscribedUsers(models.Model):
+    name=models.CharField(max_length=150)
+    email=models.CharField(max_length=150)
+    datetime=models.DateTimeField(auto_now_add=True)
+    
+
