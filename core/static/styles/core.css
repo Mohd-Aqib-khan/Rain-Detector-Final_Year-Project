@@ -17,3 +17,16 @@
 
    
 }
+
+
+
+.carousel-caption h3{
+   font-size: clamp(1rem,3vw,2rem) !important;
+}
+
+ .header_content_inner .logo a{
+   font-size: clamp(1rem,3vw,2rem) !important;
+   font-family: 'Montserat','sans-serif'; 
+
+} 
+ 
