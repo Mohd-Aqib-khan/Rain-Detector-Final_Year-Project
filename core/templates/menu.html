@@ -16,9 +16,14 @@
             <li><a href="#">News</a></li>
             <li><a href=" {% url 'contact' %} ">Contact</a></li>
             <li><a href=" {% url 'about' %}">About us</a></li>
+            <div class="d-flex justify-content-around fs-2 mt-5 menu_auth">
+                <li class="signup_modal"><a class="cursor-pointer" href="{% url 'create' %}">Sign
+                    Up</a></li>
+                <li class="login_modal"><a class="cursor-pointer" href="{% url 'login' %}">Login</a></li>
+            </div>
         </ul>
     </div>
-    <div class="menu_social">
+    {% comment %} <div class="menu_social">
         <div class="menu_phone text-center">Call us: 00-56 445 678 33</div>
         <ul class="d-flex flex-row align-items-start justify-content-start">
             <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
@@ -28,5 +33,5 @@
             <li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
             <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
         </ul>
-    </div>
+    </div> {% endcomment %}
 </div>

@@ -16,7 +16,7 @@
                     {% for st in page_obj %}
                     <!-- Destination -->
                     {% comment %} <a href="{% url 'stateview' st.id %}#stateView"> {% endcomment %}
-                        <div class="destination item" id="state_id">
+                        <div class="destination state_card item" id="state_id">
                             <div class="destination_image">
                                 <img src="{{st.img.url}}" alt="helloooo">
                                 <div class="spec_offer text-center"><a href="{% url 'stateview' st.id %}#stateView">View</a></div>
@@ -24,9 +24,9 @@
                             <div class="destination_content">
                                 <div class="destination_title"><a href="destinations.html">{{st.name}}</a>
                                 </div>
-                                {% comment %} <div class="destination_subtitle">
+                                <div class="destination_subtitle text-overflow-elipse">
                                     <p>{{st.desc}}</p>
-                                </div> {% endcomment %}
+                                </div> 
                                 {% comment %} <div class="destination_price">From ${{st.price}}</div> {% endcomment %}
                             </div>
                         </div>

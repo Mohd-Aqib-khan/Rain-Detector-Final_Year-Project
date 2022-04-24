@@ -1,12 +1,15 @@
-from email import message
+from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login, logout
 # from matplotlib.style import context
 from core.models import Contact, Destination, Slider, State,News,RegionDataset,SubscribedUsers
 from django.core.paginator import Paginator
 from django.core.mail import send_mail
 from django.conf import settings
 import json
+from core.forms import SignUpForm,LoginForm
 
 # Create your views here.
 from django.db.models import Avg, Sum
@@ -142,7 +145,6 @@ def get_email(request):
     SubscribedUsers.objects.all().delete()
     if request.method == 'POST':
         stud_name=request.POST["name"]
-        print(stud_name)
         stud_email=request.POST["email"]
         subscribedUsers = SubscribedUsers(name=stud_name, email=stud_email)
         subscribedUsers.save()
@@ -154,3 +156,52 @@ def get_email(request):
         send_mail(subject, message, email_from, recipient_list)
         return redirect('/')
     return render(request, 'index.html')
+
+def create_account(request):
+    if request.method=="POST":
+        form=SignUpForm(request.POST)
+        if form.is_valid():
+            messages.success(request,"Congratulation Your ID has been created !!")
+            user=form.save()
+            return redirect("/login/")
+    else:
+        form=SignUpForm()
+        
+    context={
+        'form':form,
+    }
+    return render (request,'signup.html',context)
+       
+
+# Login
+def user_login(request):
+    # if not request.user.is_authenticated :: means user is not logged in so the else part will be executed
+    if not request.user.is_authenticated:
+        if request.method == "POST":
+            form = LoginForm(request=request, data=request.POST)
+            if form.is_valid():
+                uname = form.cleaned_data['username']
+                upass = form.cleaned_data['password']
+                print("username",uname)
+                user = authenticate(username=uname, password=upass)
+                if user is not None:
+                    login(request, user)
+                    messages.success(request, "Logged in Successfuly")
+                    return redirect("/")
+                else:
+                    messages.info(request,"invalid credentials")
+                    return redirect("login/")
+        else:
+            form = LoginForm()
+        context = {
+            'login_form': form,
+        }
+        return render(request, 'login.html', context)
+    else:
+        # this will execute when the user is already logged in
+        return redirect('/')
+    
+def user_logout(request):
+    logout(request)
+    messages.info(request,"You have logged out successfully !!")
+    return redirect("/")

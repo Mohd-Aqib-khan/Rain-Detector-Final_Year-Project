@@ -5,7 +5,7 @@ from core.models import Contact, Destination, State, Slider,News,Dataset,Subscri
 
 @admin.register(State)
 class StateAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'img', 'desc', 'price')
+    list_display = ('id', 'name', 'img', 'desc')
 
 
 @admin.register(Slider)

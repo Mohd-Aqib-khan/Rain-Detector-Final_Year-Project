@@ -18,7 +18,12 @@
    
 }
 
-
+.signup_modal,.login_modal{
+   cursor: pointer;
+}
+.modal {
+   overflow-y: auto;
+}
 
 .carousel-caption h3{
    font-size: clamp(1rem,3vw,2rem) !important;
@@ -29,4 +34,59 @@
    font-family: 'Montserat','sans-serif'; 
 
 } 
- 
+
+.menu_content{
+   width: 69%;
+}
+
+.menu_content .menu_auth>li>a{
+   background-color: rgb(191, 191, 199);
+   font-size: large;
+   color: rgb(8, 45, 45);
+   font-weight: 600;
+   border-radius: .5rem;
+   padding: .6rem 1.3rem ;
+   border:2px solid rgb(4, 4, 12);
+   transition: all ease 1s ;
+
+}
+
+.menu_content .menu_auth>li>a:hover{
+   background-color: rgb(215, 250, 241);
+   color: rgb(0, 0, 0);
+}
+
+.modal-content{
+   border-radius: 1rem !important;
+}
+
+.modal-image{
+   overflow: hidden;
+   width: clamp(30rem,60%,40rem);
+   max-height: 200px;
+}
+.destination_subtitle{
+   line-height: 1em;
+   overflow: hidden;
+   height: 6em;
+}
+
+.state_card{
+   transition: all ease 1.1s;
+   overflow: hidden;
+}
+
+.state_card:hover{
+   transform: scale(.9);
+}
+
+.destination_image{
+   filter: opacity(100%);
+   transition: all ease 1s;
+
+}
+.destination_image:hover{
+   filter: opacity(70%);
+
+}
+
