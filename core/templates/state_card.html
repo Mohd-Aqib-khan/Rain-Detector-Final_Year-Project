@@ -15,20 +15,22 @@
                     {% comment %} {% for dest in dests %} {% endcomment %}
                     {% for st in page_obj %}
                     <!-- Destination -->
-                    <div class="destination item">
-                        <div class="destination_image">
-                            <img src="{{st.img.url}}" alt="helloooo">
-                            <div class="spec_offer text-center"><a href="{% url 'stateview' st.id %}#stateView">View</a></div>
-                        </div>
-                        <div class="destination_content">
-                            <div class="destination_title"><a href="destinations.html">{{st.name}}</a>
+                    {% comment %} <a href="{% url 'stateview' st.id %}#stateView"> {% endcomment %}
+                        <div class="destination item" id="state_id">
+                            <div class="destination_image">
+                                <img src="{{st.img.url}}" alt="helloooo">
+                                <div class="spec_offer text-center"><a href="{% url 'stateview' st.id %}#stateView">View</a></div>
                             </div>
-                            {% comment %} <div class="destination_subtitle">
-                                <p>{{st.desc}}</p>
-                            </div> {% endcomment %}
-                            {% comment %} <div class="destination_price">From ${{st.price}}</div> {% endcomment %}
+                            <div class="destination_content">
+                                <div class="destination_title"><a href="destinations.html">{{st.name}}</a>
+                                </div>
+                                {% comment %} <div class="destination_subtitle">
+                                    <p>{{st.desc}}</p>
+                                </div> {% endcomment %}
+                                {% comment %} <div class="destination_price">From ${{st.price}}</div> {% endcomment %}
+                            </div>
                         </div>
-                    </div>
+                    {% comment %} </a> {% endcomment %}
 
                     {% endfor %}
 

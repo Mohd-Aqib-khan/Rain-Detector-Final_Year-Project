@@ -12,10 +12,8 @@
 
         <div class="row profile-row  d-flex justify-content-center">
             <div class="col-lg-4">
-                <div class="card-profile p-0">
-                    <div class="card-image"> <img
-                            src="{% static 'about/aqib.jpg' %}"
-                            alt=""> </div>
+                <div class="card-profile p-0" data-aos="slide-right" id="profile_id">
+                    <div class="card-image"> <img src="{% static 'about/aqib.jpg' %}" alt=""> </div>
                     <div class="card-content d-flex flex-column align-items-center">
                         <h4 class="pt-2">Mohd Aqib Khan</h4>
                         <h5>Machine Learning Developer</h5>
@@ -31,10 +29,8 @@
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="card-profile p-0">
-                    <div class="card-image"> <img
-                            src="{% static 'about/ram1.jpeg' %}"
-                            alt=""> </div>
+                <div class="card-profile p-0" data-aos="slide-left" id="profile_id">
+                    <div class="card-image"> <img src="{% static 'about/ram1.jpeg' %}" alt=""> </div>
                     <div class="card-content d-flex flex-column align-items-center">
                         <h4 class="pt-2">Rampravesh Chaudhari</h4>
                         <h5>Front End and Backend </h5>
@@ -58,7 +54,7 @@
         <div class="row mt-5">
             <div class="col">
                 <div class="newsletter">
-                    <div class="newsletter_title_container text-center">
+                    <div class="newsletter_title_container text-center mt-5">
                         <div class="newsletter_title">Subscribe to our newsletter to
                             get the latest
                             trends &
@@ -66,21 +62,37 @@
                         <div class="newsletter_subtitle">Join our database NOW!
                         </div>
                     </div>
+                    <div class="text-white w-75 d-flex justify-content-center text-center d-none" id="welcome">
+                        <div class="justify-content-center">
+                            <div class="text-center"><img src="{% static 'images/checkicon.svg' %}"
+                                    style="width:35px;height:35px" alt="check-icon"></div>
+                            <div class="text-response">
+                                <h3 class="text-center text-white">Congratulations!</h3>
+                                <p class="text-center text-white">You have successfully subscribed to our website ! 🎉
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                     <div class="newsletter_form_container">
-                        <form action="#"
-                            class="newsletter_form d-flex flex-md-row flex-column align-items-start justify-content-between"
-                            id="newsletter_form">
+                        <form action="" method="post" id="newsletter_form" class=" newsletter_form d-flex flex-md-row flex-column align-items-start
+                            justify-content-between">
+                            <div class="d-none">{% csrf_token %}</div>
                             <div class="d-flex flex-md-row flex-column align-items-start justify-content-between">
-                                <div><input type="text" class="newsletter_input newsletter_input_name"
+                                <div style="">
+                                    <input type="text" class="newsletter_input newsletter_input_name w-100" name="sname"
                                         id="newsletter_input_name" placeholder="Name" required="required">
                                     <div class="input_border"></div>
                                 </div>
-                                <div><input type="email" class="newsletter_input newsletter_input_email"
+                                <div style="">
+                                    <input type="email" class="newsletter_input newsletter_input_email" name="semail"
                                         id="newsletter_input_email" placeholder="Your e-mail" required="required">
                                     <div class="input_border"></div>
                                 </div>
                             </div>
-                            <div><button class="newsletter_button">subscribe</button>
+                            <div>
+                                {% comment %} <button class="newsletter_button" id="news_button">subscribe</button>
+                                {% endcomment %}
+                                <input class="newsletter_button" type="submit" value="Subscribe" id="news_button">
                             </div>
                         </form>
                     </div>

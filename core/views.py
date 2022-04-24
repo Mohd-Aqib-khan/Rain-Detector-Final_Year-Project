@@ -1,10 +1,13 @@
-import email
 from email import message
+from django.http import JsonResponse
 from django.shortcuts import redirect, render
 # from matplotlib.style import context
-from core.models import Contact, Destination, Slider, State,News,RegionDataset
+from core.models import Contact, Destination, Slider, State,News,RegionDataset,SubscribedUsers
 from django.core.paginator import Paginator
-# from core.form import ContactForm
+from django.core.mail import send_mail
+from django.conf import settings
+import json
+
 # Create your views here.
 from django.db.models import Avg, Sum
 
@@ -133,3 +136,21 @@ def contact(request):
 
 def about(request):
     return render(request, 'about.html', {'about': "active",'welcome':"About Us Page"})
+
+
+def get_email(request):
+    SubscribedUsers.objects.all().delete()
+    if request.method == 'POST':
+        stud_name=request.POST["name"]
+        print(stud_name)
+        stud_email=request.POST["email"]
+        subscribedUsers = SubscribedUsers(name=stud_name, email=stud_email)
+        subscribedUsers.save()
+        # send a confirmation mail
+        subject = 'Regin Wise Rainfall Prediction'
+        message = f"Hello {stud_name} , Thanks for subscribing us. You will get notification of latest articles posted on our website. Please do not reply on this email."
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [stud_email, ]
+        send_mail(subject, message, email_from, recipient_list)
+        return redirect('/')
+    return render(request, 'index.html')
