@@ -7,10 +7,10 @@ from django.utils.translation import gettext, gettext_lazy as _
 class SignUpForm(UserCreationForm):
     # this is not port of model that is why write it before meta class
     password1 = forms.CharField(
-        label="Password", widget=forms.PasswordInput(attrs={'class': 'form-control','id':'pass1'}))
+        label="Password", widget=forms.PasswordInput(attrs={'class': 'form-control','id':'pass1'}),label_suffix=" ")
 
     password2 = forms.CharField(
-        label="Confirm Password", widget=forms.PasswordInput(attrs={'class': 'form-control','id':'pass2'}))
+        label="Confirm Password", widget=forms.PasswordInput(attrs={'class': 'form-control','id':'pass2'}),label_suffix=" ")
 
     class Meta:
         model = User
@@ -18,7 +18,6 @@ class SignUpForm(UserCreationForm):
                   'first_name',
                   'last_name',
                   'email']
-
         labels = {
             'first_name': 'First Name',
             'last_name': 'Last Name',
@@ -26,6 +25,7 @@ class SignUpForm(UserCreationForm):
         }
         
         widgets = {
+    
             'username': forms.TextInput(attrs={'class': 'form-control','id':'username'}),
             'first_name': forms.TextInput(attrs={'class': 'form-control','id':'firstname'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control','id':'lastname'}),
@@ -35,8 +35,8 @@ class SignUpForm(UserCreationForm):
 
 class LoginForm(AuthenticationForm):
     username = UsernameField(widget=forms.TextInput(
-        attrs={'autofocus': True, 'class': 'form-control'}))
+        attrs={'autofocus': True, 'class': 'form-control outline-none'}),label_suffix=" ")
 
     password = forms.CharField(
-        label=_("Password"), strip=False, widget=forms.PasswordInput(attrs={'autocomplete': 'current-password', 'class': 'form-control'}))
+        label=_("Password"), strip=False, widget=forms.PasswordInput(attrs={'autocomplete': 'current-password', 'class': 'form-control'}),label_suffix=" ")
 

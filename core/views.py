@@ -67,7 +67,6 @@ def index(request):
 
     paginator = Paginator(st, 6)
     page_number = request.GET.get('page')
-    print(page_number)
     page_obj = paginator.get_page(page_number)
     l = []
     for state in st:
@@ -159,16 +158,16 @@ def get_email(request):
 
 def create_account(request):
     if request.method=="POST":
-        form=SignUpForm(request.POST)
+        form=SignUpForm(request.POST,label_suffix=" ")
         if form.is_valid():
             messages.success(request,"Congratulation Your ID has been created !!")
             user=form.save()
             return redirect("/login/")
     else:
-        form=SignUpForm()
+        form=SignUpForm(label_suffix=" ")
         
     context={
-        'form':form,
+        'signup_form':form,
     }
     return render (request,'signup.html',context)
        
@@ -182,7 +181,6 @@ def user_login(request):
             if form.is_valid():
                 uname = form.cleaned_data['username']
                 upass = form.cleaned_data['password']
-                print("username",uname)
                 user = authenticate(username=uname, password=upass)
                 if user is not None:
                     login(request, user)

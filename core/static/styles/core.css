@@ -72,7 +72,7 @@
 }
 
 .state_card{
-   transition: all ease 1.1s;
+   transition:  ease 1.1s;
    overflow: hidden;
 }
 
@@ -89,4 +89,47 @@
    filter: opacity(70%);
 
 }
+
+input:focus ~ .floating-label,
+input:not(:focus):valid ~ .floating-label{
+  top: -17px;
+  display:inline-block;
+  background-color:white;
+  padding: 0 5px;
+  color: black;
+  border-radius: .5rem;
+
+  left: 20px;
+  font-size: 1.2rem;
+  opacity: 1;
+}
+
+
+.form-outline input:focus{
+   outline: none;
+   box-shadow: none;
+   border: 2px solid black;
+
+}
+.form-outline input{
+   background-color: white;
+   outline: none;
+   box-shadow: none;
+   padding: .8rem;
+   border: 1px solid rgb(136, 128, 128);
+
+}
+
+.floating-label {
+  position: absolute;
+  pointer-events: none;
+  left: 22px;
+  top: 11px;
+  transition: 0.2s ease all;
+}
+
+.introduction_p{
+   text-align: justify !important;
+}
+
 

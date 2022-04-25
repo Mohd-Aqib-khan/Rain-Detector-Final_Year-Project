@@ -133,7 +133,7 @@ h6 {
 }
 
 .form-control {
-   color: #db5246;
+   color: #0c0605;
 }
 section {
    display: block;
@@ -148,6 +148,7 @@ section {
    content: "";
    display: table;
 }
+
 .clearfix::after {
    clear: both;
 }
