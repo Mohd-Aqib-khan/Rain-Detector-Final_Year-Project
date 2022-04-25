@@ -72,21 +72,17 @@
 }
 
 .state_card{
-   transition:  ease 1.1s;
+   transition:  ease 1.4s;
    overflow: hidden;
 }
 
 .state_card:hover{
+   border-radius: 2rem 2rem 0 0 ;
    transform: scale(.9);
 }
 
 .destination_image{
-   filter: opacity(100%);
    transition: all ease 1s;
-
-}
-.destination_image:hover{
-   filter: opacity(70%);
 
 }
 
@@ -103,6 +99,7 @@ input:not(:focus):valid ~ .floating-label{
   font-size: 1.2rem;
   opacity: 1;
 }
+
 
 
 .form-outline input:focus{
