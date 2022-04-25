@@ -20,8 +20,7 @@ class Destination:
 class State(models.Model):
     name = models.CharField(max_length=150)
     img = models.ImageField(upload_to="myimage", default="")
-    desc = models.CharField(max_length=200)
-    price = models.IntegerField()
+    desc = models.CharField(max_length=1000)
 
 
 class Slider(models.Model):
@@ -92,5 +91,3 @@ class SubscribedUsers(models.Model):
     name=models.CharField(max_length=150)
     email=models.CharField(max_length=150)
     datetime=models.DateTimeField(auto_now_add=True)
-    
-
