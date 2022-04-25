@@ -4,3 +4,22 @@
 .dropdown-item{
     font-family: "Oswald", sans-serif;
 }
+
+.home_search_content_prediction {
+    width: 60%;
+    background: #ffffff;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    left: 0; 
+    right: 0;
+    margin-left: auto; 
+    margin-right: auto;
+ }
+ 
+ @media only screen and (max-width: 450px) {
+    /* For mobile phones: */
+    [class*="home_search_content_prediction"] {
+      width: 100%;
+    }
+ }
+

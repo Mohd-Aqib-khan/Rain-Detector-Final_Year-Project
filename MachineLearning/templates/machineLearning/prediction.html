@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid py-5">
+    <div class="home_search_container rounded" id="background_container"
+        style="top: 0px; background: rgba(0,0,0,0.26); position: static; width: inherit;min-height:1000px;">
+        <div class="home_search_title px-3">Rain Prediction</div>
+        <div class="row home_search_content_prediction px-4 rounded-3">
+            <div class="row justify-content-center">
+                <input type="text" id="stateInput" style="width:80%; margin-right:5px;" class="search_input search_input_1"
+                    placeholder="Select State" required="required" onclick="showList()">
+            </div>
+            <div class="row justify-content-center" style="margin-top:13px;">
+                <ul id="stateFirst1" class="col-md-5" style="position: relative; max-height: 377px;
+                width:80%;
+                display:none;
+                overflow-y: scroll;
+                background-color: white;
+                margin-top: -10px;">
+                    {% for item in data.stateList %}
+                    <li style="margin-bottom: 5px;">
+                        <button class="" type="button" onclick="check({{forloop.counter0}})" style="
+                            width: -webkit-fill-available;
+                            border-radius: 14px;
+                            height: 50px;
+                            background: #f2f5f6;
+                            border: none;
+                            outline: none;
+                            font-family: 'Oswald', sans-serif;
+                            font-size: 14px !important;
+                            font-weight: 500 !important;
+                            color: #72728c !important;
+                            text-align: center;
+                            padding-top: 14px;
+                        ">
+                            <pre style="font-family: 'Oswald', sans-serif;
+                                font-size: 14px !important;
+                                margin-left: 0px;
+                                text-align: center;
+                                font-weight: 500 !important;">{{item | safe}}</pre>
+                        </button>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>          
+            <div class="row justify-content-center mb-3">
+                <input type="text" id="jan_feb" style="width:80%; margin-right:5px;" class="search_input search_input_1"
+                    placeholder="Enter Jan-Feb Data" required="required">
+            </div>
+            <div class="row justify-content-center mb-3">
+                <input type="text" id="mar_may" style="width:80%; margin-right:5px;" class="search_input search_input_1"
+                    placeholder="Enter Mar-May Data" required="required">
+            </div>
+            <div class="row justify-content-center mb-3">
+                <input type="text" id="jun_sep" style="width:80%; margin-right:5px;" class="search_input search_input_1"
+                    placeholder="Enter Jun-Sep Data" required="required">
+            </div>
+            <div class="row justify-content-center mb-3">
+                <input type="text" id="oct_dec" style="width:80%; margin-right:5px;" class="search_input search_input_1"
+                    placeholder="Enter Oct-Dec Data" required="required">
+            </div>
+            <div class="row justify-content-center mb-3">
+                <div class="col-lg-3">
+                    <button class="home_search_button" onclick="prediction()">search</button>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <h5 class="mt-4 text-center border border-warning text-dark py-3" id="resultHeading" style="display: none; background-color: white;">Result</h5>
+            <div id="wrapperOutputTable"></div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+    const stateList = document.getElementById("stateFirst1");
+    const stateInput = document.getElementById("stateInput");
+    const stateListData = {{data.stateList | safe}}; 
+    const showList = () => {
+        stateList.style.display = "block";
+    }
+    const check = (index) =>{
+        stateList.style.display = "none";
+        stateInput.value = stateListData[index];
+    }
+</script>
+<script>
+    let grid = "";
+    let dataset = [];
+    const prediction = () =>{
+        const stateinput = document.getElementById("stateInput").value;
+        const jan_feb = document.getElementById("jan_feb").value;
+        const mar_may = document.getElementById("mar_may").value;
+        const jun_sep = document.getElementById("jun_sep").value;
+        const oct_dec = document.getElementById("oct_dec").value;
+        
+        var datavalue = {stateinput,jan_feb,mar_may,jun_sep,oct_dec};
+        $.ajax({
+            url : "/ml/make-prediction", // the endpoint
+            type : "POST", // http method
+            data : { 'dataset' : JSON.stringify(datavalue), 'csrfmiddlewaretoken': '{{csrf_token}}'}, // data sent with the post request
+    
+            // handle a successful response
+            success : function(json) {
+                //console.log(json); // log the returned json to the console
+                //console.log("success"); // another sanity check
+                data = [];
+                data.push(stateinput);
+                data.push(Number(jan_feb));
+                data.push(Number(mar_may));
+                data.push(Number(jun_sep));
+                data.push(Number(oct_dec));
+                data.push(json.data.final_output);
+                //console.log("data:-",data);
+                dataset.push(data);
+                if(grid==""){
+                    document.getElementById("resultHeading").style.display = "block";
+                    grid = table(dataset,["Region","Jan-Feb","Mar-May","Jun-Sep","Oct-Dec","Annual"],"wrapperOutputTable");
+                }
+                else{
+                    grid.updateConfig({
+                            data: dataset
+                        }).forceRender();
+                }
+                
+            },
+        });
+        function table(dataset, col, id) {
+            const gridTable = new gridjs.Grid({
+                columns: col,
+                data: dataset,
+                pagination: {
+                enabled: true,
+                limit: 5,
+                summary: false
+            },
+                style: {
+                    table: {
+                        border: '3px solid #ccc'
+                    },
+                    th: {
+                        'background-color': 'rgba(0, 0, 0, 0.1)',
+                        color: '#000',
+                        'border-bottom': '3px solid #ccc',
+                        'text-align': 'center'
+                    },
+                    td: {
+                        'text-align': 'center',
+                        'width': "10px"
+                    }
+                }
+            }).render(document.getElementById(id));
+            return gridTable;
+        }
+    }
+</script>
+<script>
+   
+</script>
+{% endblock content %}

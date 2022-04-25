@@ -1,11 +1,17 @@
+from tkinter.font import names
 from django.shortcuts import render
+from sklearn import metrics
 from core.models import State,Dataset,RegionDataset
 from django.core import serializers
 from django.db.models import Avg, Count
+from django.http import JsonResponse
 import json as simplejson
 import os
 import numpy as np
 import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+
 
 
 def stateComparsion(request):
@@ -36,11 +42,38 @@ def stateComparsion(request):
 def index(request):
     return render(request, 'machineLearning/index.html')
 
+def rainPredication(request):
+    stateName = RegionDataset.objects.values_list('SUBDIVISION', flat=True).distinct()
+    data = {
+        "stateList": list(stateName)
+    }
+    return render(request,"machineLearning/prediction.html", {"data": data})
 
-
+def makePrediction(request):
+    Data = request.POST["dataset"]
+    dict_data = simplejson.loads(Data)
+    print(type(dict_data))
+    nameSate = dict_data["stateinput"]
+    print(nameSate)
+    prepare_dataset = RegionDataset.objects.filter(SUBDIVISION=dict_data['stateinput']).values("ANNUAL","Jan_Feb","Mar_May","Jun_Sep","Oct_Dec");
+    dataset = pd.DataFrame(prepare_dataset)
+    X = dataset[['Jan_Feb', 'Mar_May', 'Jun_Sep','Oct_Dec']]
+    Y = dataset['ANNUAL'].values.reshape(-1,1)
+    X_train,X_test,Y_train,Y_test = train_test_split(X,Y,test_size=0.20,random_state=1)
+    regr = LinearRegression()
+    regr.fit(X_train, Y_train)
+    y2_pred = regr.predict(X_test)
+    final_test = pd.DataFrame({"Jan_Feb":[int(dict_data['jan_feb'])], "Mar_May":[int(dict_data['mar_may'])], "Jun_Sep":[int(dict_data["jun_sep"])], "Oct_Dec":[int(dict_data["oct_dec"])]})
+    print(final_test)
+    final_output = regr.predict(final_test)
+    print(final_output[0][0])
+    data = {"final_output":final_output[0][0],"mean_square_error" : metrics.mean_squared_error(Y_test, y2_pred), "root_mean_square_error" : np.sqrt(metrics.mean_squared_error(Y_test, y2_pred))}
+    return JsonResponse({"data": data})
+    #return render(request,"machineLearning/prediction.html",{"data": data})
+    
 def state_view(request, sid):
     #global annual_rain_d,annual_data, year_d, annual_bar_data
-    # Loading Data from local disk 
+    # Loading Data from local disk []
     
     s = State.objects.get(pk=sid)
     A_N=RegionDataset.objects.filter(SUBDIVISION=s.name)
