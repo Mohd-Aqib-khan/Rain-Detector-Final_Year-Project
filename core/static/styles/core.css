@@ -76,15 +76,15 @@
    overflow: hidden;
 }
 
-.state_card:hover{
+/* .state_card:hover{
    border-radius: 2rem 2rem 0 0 ;
    transform: scale(.9);
-}
+} */
 
-.destination_image{
+/* .destination_image{
    transition: all ease 1s;
 
-}
+} */
 
 input:focus ~ .floating-label,
 input:not(:focus):valid ~ .floating-label{
