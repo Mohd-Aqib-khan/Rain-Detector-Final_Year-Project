@@ -61,6 +61,14 @@ def index(request):
         dests[i].price = 700
 
     st = State.objects.all().order_by('id')
+    x=0
+    state_l=[]
+    for i in range(12):
+        m=[]
+        for j in range(3):
+            m.append(st[x])
+            x+=1
+        state_l.append(m)
     
 
     # paginations
@@ -68,6 +76,7 @@ def index(request):
     paginator = Paginator(st, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+    
     l = []
     for state in st:
         l.append(state.name)
@@ -107,6 +116,8 @@ def index(request):
         'home': "active",
         'dests': dests,
         'states': st,
+        'state_l': state_l,
+        'state':st,
         'slider': sl,
         "news":nw,
         "page_obj": page_obj,
