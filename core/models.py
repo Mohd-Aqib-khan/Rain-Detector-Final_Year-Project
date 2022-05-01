@@ -23,6 +23,7 @@ class State(models.Model):
     desc = models.CharField(max_length=1000)
 
 
+st=State.objects.all()
 class Slider(models.Model):
     img = models.ImageField(upload_to='slider', default="")
 

@@ -19,26 +19,3 @@ x.addEventListener("change", myProfile(x))
 
 
 
-
-// //State card
-// function changeDefOver() {
-//     let e = document.getElementById("state_id")
-//     e.setAttribute('data-aos', "zoom-in");
-
-
-// }
-
-// function changeDefOut() {
-//     let e = document.getElementById("state_id")
-//     e.setAttribute('data-aos', "zoom-out");
-
-
-// }
-// var states = document.querySelectorAll('#state_id');
-// for (let i = 0; i < states.length; i++) {
-//     let s = states[i];
-//     s.addEventListener('mouseover', changeDefOver);
-//     s.addEventListener('mouseout', changeDefOut);
-
-
-// }
