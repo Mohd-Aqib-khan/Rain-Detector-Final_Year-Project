@@ -9,10 +9,10 @@
         <div class="row home_search_content_prediction px-4 rounded-3">
             <div class="row justify-content-center">
                 <input type="text" id="stateInput" style="width:80%; margin-right:5px;" class="search_input search_input_1"
-                    placeholder="Select State" required="required" onclick="showList()">
+                    placeholder="Select State" required="required" onclick="showList()" onkeyup="search('stateList','stateInput')">
             </div>
             <div class="row justify-content-center" style="margin-top:13px;">
-                <ul id="stateFirst1" class="col-md-5" style="position: relative; max-height: 377px;
+                <ul id="stateList" class="col-md-5" style="position: relative; max-height: 377px;
                 width:80%;
                 display:none;
                 overflow-y: scroll;
@@ -74,7 +74,7 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script>
-    const stateList = document.getElementById("stateFirst1");
+    const stateList = document.getElementById("stateList");
     const stateInput = document.getElementById("stateInput");
     const stateListData = {{data.stateList | safe}}; 
     const showList = () => {

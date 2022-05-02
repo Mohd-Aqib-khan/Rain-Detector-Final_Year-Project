@@ -12,7 +12,7 @@
 
                     <div class="row justify-content-center">
                         <input type="text" id="firstState" style="width:80%; margin-right:5px;" class="search_input search_input_1"
-                            placeholder="Select First State" required="required" onclick="showList(0)">
+                            placeholder="Select First State" required="required" onclick="showList(0)" onkeyup="search('stateFirst1','firstState')">
                     </div>
                     <div class="row mt-2">
                         <ul id="stateFirst1" class="col-md-5" style="position: relative; max-height: 377px;
@@ -65,7 +65,7 @@
 
                     <div class="row justify-content-center">
                         <input type="text" id="secondState" style="width:80%; margin-right:5px;" class="search_input search_input_1"
-                            placeholder="Select Second State" required="required" onclick="showList(1)">
+                            placeholder="Select Second State" required="required" onclick="showList(1)" onkeyup="search('stateSecond2','secondState')">
                     </div>
                     <div class="row mt-2">
                         <ul id="stateSecond2" class="col-md-5" style="position: relative; max-height: 377px;
@@ -121,7 +121,7 @@
                 <div class="col-lg-3">
                     <div class="row justify-content-center">
                         <input type="text" id="parameterListItem" style="width:80%; margin-right:5px;" class="search_input search_input_1"
-                            placeholder="Select the Parameter" required="required" onclick="showList(2)">
+                            placeholder="Select the Parameter" required="required" onclick="showList(2)" onkeyup="search('paraMeter','parameterListItem')">
 
                     </div>
                     <div class="row mt-2">
