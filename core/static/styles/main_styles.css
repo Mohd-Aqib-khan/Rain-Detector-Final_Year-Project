@@ -875,12 +875,13 @@ section {
 
 .spec_offer {
    position: absolute;
-   top: 1.6rem;
-   left: 1.2rem;
+   top: 2rem;
+   left: 2rem;
 
    width: clamp(80px,1vw,100px);
    height: 36px;
-   background: #181818;
+   background-color: #181818;
+   transition: all ease 1s;
 }
 
 .spec_offer a {

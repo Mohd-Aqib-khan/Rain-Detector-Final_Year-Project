@@ -1,0 +1,45 @@
+<div class="container state_top">
+    <div class="col text-center">
+        <div class="section_subtitle">simply amazing places</div>
+        <div class="section_title">
+            <h2>State</h2>
+        </div>
+    </div>
+</div>
+
+<div class="state_container" id="state_container">
+    {% for st in page_obj %}
+    <a href="{% url 'stateview' st.id %}">
+        <div class="state_cards" data-aos="fade-up">
+            <div><img src="{{st.img.url}}" alt="helloooo"></div>
+            <div class="spec_offer text-center"><a href="{% url 'stateview' st.id %}#stateView">View</a></div>
+            <div class="destination_title"><a href="destinations.html">{{st.name}}</a></div>
+            <div class="destination_subtitle">
+                <p>{{st.desc}}</p>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+
+
+
+</div>
+<div class="paginate d-flex justify-content-evenly">
+    <nav aria-label="..." >
+        <ul class="pagination my-5">
+            {% if page_obj.has_previous %}
+            <a class="page-link" href="?page=1#state_container">&laquo;</a>
+            <a class="page-link" href=" ?page={{ page_obj.previous_page_number }}#state_container">Previous</a>
+            {% endif %}
+    
+    
+            <li class="page-item active">
+                <a class="page-link" href="#">{{ page_obj.number }} <span class="d-block sr-only px-5"></span></a>
+            </li>
+            {% if page_obj.has_next %}
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}#state_container">Next</a>
+            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}#state_container">&raquo;</a>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
