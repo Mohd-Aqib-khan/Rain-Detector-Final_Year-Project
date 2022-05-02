@@ -17,5 +17,4 @@ const search = (id,valueId) =>{
             searchIndex+=1;
         }
     }
-    console.log("list after serching:-",ul);
 }
