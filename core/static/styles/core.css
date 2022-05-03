@@ -76,17 +76,21 @@
    height: 6em;
 }
 
+/* Sign in sign up start */
 
-
+<<<<<<< HEAD
 /* input:focus~.floating-label,input:valid ~.floating-label
 {
+=======
+input:focus~.floating-label,
+input:not(:focus) .floating-label {
+>>>>>>> 52f75341bd7bdb4462fe4549400829bc8fc3aed7
    top: -17px;
    display: inline-block;
    background-color: white;
-   padding: 0 5px;
+   padding: 0 3px 0 3px;
    color: black;
    border-radius: .5rem;
-
    left: 20px;
    font-size: 1.2rem;
    opacity: 1;
@@ -115,11 +119,18 @@
 .floating-label {
    position: absolute;
    pointer-events: none;
+<<<<<<< HEAD
    left: 6px;
    top: -30px;
+=======
+   left: 22px;
+   top: 15px;
+>>>>>>> 52f75341bd7bdb4462fe4549400829bc8fc3aed7
    transition: 0.2s ease all;
    font-size: clamp(1vw,1.2rem,2vw);
 }
+
+/* Signin signup end */
 
 .introduction_p {
    text-align: justify !important;

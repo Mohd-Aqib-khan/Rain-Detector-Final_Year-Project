@@ -25,8 +25,8 @@
                                         {% comment %} <i class="fas fa-user fa-lg me-3 fa-fw"></i> {% endcomment %}
                                         <div class="form-outline flex-fill mb-0">
                                             {{fm}}
-                                            <span for="{{fm.auto_id}}" class="floating-label">{{fm.label_tag|striptags}}</span>
-                                            <small class="text-warning">{{fm.errors|striptags}}</small>
+                                            <span for="{{fm.auto_id}}" class="floating-label" style="font-family: 'Oswald';">{{fm.label_tag|striptags}}</span>
+                                            <small class="text-warning" style="font-family: 'Oswald';">{{fm.errors|striptags}}</small>
 
                                         </div>
                                     </div>
@@ -41,9 +41,9 @@
                                     </div>
 
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <input type="submit" class="btn btn-primary btn-lg" value="Register">
+                                        <input type="submit" class="btn btn-primary btn-lg" value="Register" style="font-family: 'Oswald';">
                                         <a class="btn btn-primary btn-lg mx-lg-5 mx-md-5 mx-sm-5 mx-5"
-                                            href="{% url 'login' %}">Login</a>
+                                            href="{% url 'login' %}" style="font-family: 'Oswald';">Login</a>
                                     </div>
 
 
