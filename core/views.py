@@ -179,6 +179,8 @@ def create_account(request):
         
     context={
         'signup_form':form,
+        "welcome":"To Sign Up Page",
+        "signup":"active"
     }
     return render (request,'signup.html',context)
        
@@ -204,6 +206,8 @@ def user_login(request):
             form = LoginForm()
         context = {
             'login_form': form,
+            "welcome":"To Login Page",
+            "login":"active"
         }
         return render(request, 'login.html', context)
     else:

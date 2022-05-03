@@ -25,7 +25,7 @@
 
                                     {% for fm in login_form %}
                                     <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                        {% comment %} <i class="fas fa-user fa-lg me-3 fa-fw"></i> {% endcomment %}
                                         <div class="form-outline flex-fill mb-0">
                                             {{fm}}
                                             <span for="{{fm.auto_id}}" class="floating-label">{{fm.label_tag|striptags}}</span>

@@ -37,7 +37,7 @@ def stateComparsion(request):
         "parameter": parameter
     }
     # return HttpResponse("Hello, world. You're at the polls index.")
-    return render(request, 'machineLearning/statecomparsion.html', {"data": data,"welcome":"State Comparison"})
+    return render(request, 'machineLearning/statecomparsion.html', {"data": data,"welcome":"State Comparison","statecomparison":"active"})
 
 def index(request):
     return render(request, 'machineLearning/index.html')
@@ -47,7 +47,7 @@ def rainPredication(request):
     data = {
         "stateList": list(stateName)
     }
-    return render(request,"machineLearning/prediction.html", {"data": data})
+    return render(request,"machineLearning/prediction.html", {"data": data,"welcome":"To Prediction Page","rainpredictor":"active"})
 
 def makePrediction(request):
     Data = request.POST["dataset"]
