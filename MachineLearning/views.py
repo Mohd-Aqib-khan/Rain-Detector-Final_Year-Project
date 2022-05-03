@@ -47,7 +47,7 @@ def rainPredication(request):
     data = {
         "stateList": list(stateName)
     }
-    return render(request,"machineLearning/prediction.html", {"data": data,"welcome":"To Prediction Page","rainpredictor":"active"})
+    return render(request,"machineLearning/prediction.html", {"data": data,"welcome":"Prediction Page","rainpredictor":"active"})
 
 def makePrediction(request):
     Data = request.POST["dataset"]
