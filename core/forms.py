@@ -26,8 +26,13 @@ class SignUpForm(UserCreationForm):
         
         widgets = {
     
+<<<<<<< HEAD
+            'username': forms.TextInput(attrs={'autofocus': False, 'class': 'form-control','id':'username'}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control','id':'firstname'}),
+=======
             'username': forms.TextInput(attrs={'class': 'form-control','id':'username'}),
             'first_name': forms.TextInput(attrs={'class': 'form-control','id':'username'}),
+>>>>>>> 52f75341bd7bdb4462fe4549400829bc8fc3aed7
             'last_name': forms.TextInput(attrs={'class': 'form-control','id':'lastname'}),
             'email': forms.TextInput(attrs={'class': 'form-control','id':'email'})
         }

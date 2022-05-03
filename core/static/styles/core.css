@@ -78,8 +78,13 @@
 
 /* Sign in sign up start */
 
+<<<<<<< HEAD
+/* input:focus~.floating-label,input:valid ~.floating-label
+{
+=======
 input:focus~.floating-label,
 input:not(:focus) .floating-label {
+>>>>>>> 52f75341bd7bdb4462fe4549400829bc8fc3aed7
    top: -17px;
    display: inline-block;
    background-color: white;
@@ -89,7 +94,8 @@ input:not(:focus) .floating-label {
    left: 20px;
    font-size: 1.2rem;
    opacity: 1;
-}
+} */
+
 
 
 
@@ -105,6 +111,7 @@ input:not(:focus) .floating-label {
    outline: none;
    box-shadow: none;
    padding: .8rem;
+   margin-bottom: 2rem;
    border: 1px solid rgb(136, 128, 128);
 
 }
@@ -112,9 +119,15 @@ input:not(:focus) .floating-label {
 .floating-label {
    position: absolute;
    pointer-events: none;
+<<<<<<< HEAD
+   left: 6px;
+   top: -30px;
+=======
    left: 22px;
    top: 15px;
+>>>>>>> 52f75341bd7bdb4462fe4549400829bc8fc3aed7
    transition: 0.2s ease all;
+   font-size: clamp(1vw,1.2rem,2vw);
 }
 
 /* Signin signup end */
@@ -144,21 +157,6 @@ input:not(:focus) .floating-label {
 }
 
 
-/* .state_cards .spec_offer{
-   animation: buttonView ease-out 1s;
-   animation-fill-mode:backwards ;
-}
-
-@keyframes buttonView {
-   0%{
-      transform: scale(.5);
-
-   }
-   100%{
-      transform: scale(1);
-
-   }
-} */
 
 
 
@@ -269,4 +267,27 @@ input:not(:focus) .floating-label {
    }
 
 } 
+
+.home_search_content_prediction input{
+   transition: all 1s ease;
+   border-radius: 1rem;
+
+
+}
+
+.home_search_content_prediction input:focus{
+   border: 1px solid rgb(76, 74, 74);
+}
+.home_search_container input{
+   transition: all 1s ease;
+   border-radius: 1rem;
+   margin-bottom: 1rem;
+
+
+
+}
+
+.home_search_container input:focus{
+   border: 1px solid rgb(76, 74, 74);
+}
 
