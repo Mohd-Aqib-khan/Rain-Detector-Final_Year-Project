@@ -429,13 +429,16 @@ section {
 .menu_logo a {
    font-family: "Oswald", sans-serif;
    font-size: 30px;
+   left: 2.1rem;
    font-weight: 500;
    color: #181818;
    line-height: 0.75;
 }
 .menu_close_container {
-   width: 18px;
-   height: 18px;
+   width: 20px;
+   height: 20px;
+   top:27px;
+   right: 46px;
    transform-origin: center center;
    -webkit-transform: rotate(45deg);
    -moz-transform: rotate(45deg);
@@ -482,7 +485,7 @@ section {
    transform: translateY(-50%);
 }
 .menu_content ul li a {
-   font-size: 48px;
+   font-size: 30px;
    font-weight: 500;
    color: #181818;
    -webkit-transition: all 200ms ease;
