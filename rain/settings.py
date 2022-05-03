@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
+from django.contrib.messages import constants as messages_s
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -137,3 +138,8 @@ EMAIL_PORT='587'
 EMAIL_HOST_USER='raindetector786@gmail.com'
 EMAIL_HOST_PASSWORD="tdqmtbuenldpwknm"
 EMAIL_USE_TLS=True
+
+# messages tag changes
+MESSAGE_TAGS={
+    messages_s.ERROR:"danger"
+}

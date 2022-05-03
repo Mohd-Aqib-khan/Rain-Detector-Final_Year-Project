@@ -115,7 +115,7 @@ input:not(:focus) .floating-label {
    left: 2px;
    bottom: 1px;
    transition: 0.2s ease all;
-   font-size: clamp(1vw,1.6rem,2vw);
+   font-size: 1rem;
 }
 
 /* Signin signup end */

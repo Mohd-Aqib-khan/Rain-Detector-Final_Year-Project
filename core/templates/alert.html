@@ -1,7 +1,7 @@
 {% if messages %}
 {% for message in messages %}
-<div class="container mt-5">
-    <div {% if message.tags  %} class="alert alert-{{message.tags}} alert-dismissible fade show text-center" {% endif %} role="alert">
+<div class="container mt-3">
+    <div {% if message.tags  %} class="alert alert-{{message.tags}} fw-bold alert-dismissible fade show text-center" {% endif %} role="alert">
         <strong >{{user.username}}</strong> {{message}}!!.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>

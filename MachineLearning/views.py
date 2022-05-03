@@ -1,5 +1,5 @@
 from tkinter.font import names
-from django.shortcuts import render
+from django.shortcuts import render,redirect,HttpResponseRedirect
 from sklearn import metrics
 from core.models import State,Dataset,RegionDataset
 from django.core import serializers
@@ -7,47 +7,60 @@ from django.db.models import Avg, Count
 from django.http import JsonResponse
 import json as simplejson
 import os
+from django.contrib import messages
 import numpy as np
+from django.urls import reverse
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+from django.contrib.auth import authenticate, login, logout
 
 
 
 def stateComparsion(request):
+    if request.user.is_authenticated:
     # os.chdir("D:\\RegionDataset")
-    stateName = RegionDataset.objects.values_list('SUBDIVISION', flat=True).distinct()
-    dataset = RegionDataset.objects.all()
-    All_Region_Rainfall_data = RegionDataset.objects.values('SUBDIVISION').annotate(ANNUAL=Avg('ANNUAL'),JAN=Avg('JAN'),FEB=Avg('FEB'),MAR=Avg('MAR'),APR=Avg('APR'),MAY=Avg('MAY'),JUN=Avg('JUN'),JUL=Avg('JUL'),AUG=Avg('AUG'),SEP=Avg('SEP'),OCT=Avg('OCT'),NOV=Avg('NOV'),DEC=Avg('DEC'),Jan_Feb=Avg('Jan_Feb'),Mar_May=Avg('Mar_May'),Jun_Sep=Avg('Jun_Sep'),Oct_Dec=Avg('Oct_Dec'))
-    json_RegionDataset=serializers.serialize("json",dataset)
-    # print("data:- ",All_Region_Rainfall_data)
-    # os.chdir("D:\\RegionDataset")
-    # df = pd.read_csv("rainfall_in_india.csv")
-    # annual_rain_d, year_d = seperatingData(df)
+        stateName = RegionDataset.objects.values_list('SUBDIVISION', flat=True).distinct()
+        dataset = RegionDataset.objects.all()
+        All_Region_Rainfall_data = RegionDataset.objects.values('SUBDIVISION').annotate(ANNUAL=Avg('ANNUAL'),JAN=Avg('JAN'),FEB=Avg('FEB'),MAR=Avg('MAR'),APR=Avg('APR'),MAY=Avg('MAY'),JUN=Avg('JUN'),JUL=Avg('JUL'),AUG=Avg('AUG'),SEP=Avg('SEP'),OCT=Avg('OCT'),NOV=Avg('NOV'),DEC=Avg('DEC'),Jan_Feb=Avg('Jan_Feb'),Mar_May=Avg('Mar_May'),Jun_Sep=Avg('Jun_Sep'),Oct_Dec=Avg('Oct_Dec'))
+        json_RegionDataset=serializers.serialize("json",dataset)
+        # print("data:- ",All_Region_Rainfall_data)
+        # os.chdir("D:\\RegionDataset")
+        # df = pd.read_csv("rainfall_in_india.csv")
+        # annual_rain_d, year_d = seperatingData(df)
 
-    # df = removingNull(df, annual_rain_d, year_d)
-    # annual_rain_d, year_d = seperatingData(df)
-    # annual_data = simplejson.dumps(annual_rain_d)
-    # list_state = list(annual_rain_d.keys())
-    parameter = ["ANNUAL","JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"]
-    data = {
-        "RegionDataset": json_RegionDataset,
-        "stateList": list(stateName),
-        "AllRegionData":list(All_Region_Rainfall_data),
-        "parameter": parameter
-    }
-    # return HttpResponse("Hello, world. You're at the polls index.")
-    return render(request, 'machineLearning/statecomparsion.html', {"data": data,"welcome":"State Comparison","statecomparison":"active"})
+        # df = removingNull(df, annual_rain_d, year_d)
+        # annual_rain_d, year_d = seperatingData(df)
+        # annual_data = simplejson.dumps(annual_rain_d)
+        # list_state = list(annual_rain_d.keys())
+        parameter = ["ANNUAL","JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"]
+        data = {
+            "RegionDataset": json_RegionDataset,
+            "stateList": list(stateName),
+            "AllRegionData":list(All_Region_Rainfall_data),
+            "parameter": parameter
+        }
+        # return HttpResponse("Hello, world. You're at the polls index.")
+        return render(request, 'machineLearning/statecomparsion.html', {"data": data,"welcome":"State Comparison","statecomparison":"active"})
+    else:
+        messages.error(request,"Please login to before visting state comparsion page")
+        return redirect("/")
+        
 
 def index(request):
     return render(request, 'machineLearning/index.html')
 
 def rainPredication(request):
-    stateName = RegionDataset.objects.values_list('SUBDIVISION', flat=True).distinct()
-    data = {
-        "stateList": list(stateName)
-    }
-    return render(request,"machineLearning/prediction.html", {"data": data,"welcome":"Prediction Page","rainpredictor":"active"})
+    if request.user.is_authenticated:
+        stateName = RegionDataset.objects.values_list('SUBDIVISION', flat=True).distinct()
+        data = {
+            "stateList": list(stateName)
+        }
+        return render(request,"machineLearning/prediction.html", {"data": data,"welcome":"Prediction Page","rainpredictor":"active"})
+    else:
+        messages.error(request,"Please login before visiting the  prediction page")
+        return redirect("/")
+        
 
 def makePrediction(request):
     Data = request.POST["dataset"]
