@@ -51,6 +51,7 @@
         barThickness: 6,
         maxBarThickness: 8,
         minBarLength: 2,*/
+        label: "",
         data: annual_bar_data,
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
@@ -132,6 +133,7 @@
     data: {
       labels: ['Jan', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
       datasets: [{
+        label: "",
         /* barPercentage: 0.5,
         barThickness: 6,
         maxBarThickness: 8,
@@ -177,7 +179,6 @@
   });
 </script>
 <script>
-  console.log({{data.state_data | safe}});
   const rawDataset = {{data.state_data | safe}};
   let dataset = [];
   rawDataset.forEach((value,index)=>{

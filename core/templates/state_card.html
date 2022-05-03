@@ -17,10 +17,10 @@
                                 <div class="spec_offer text-center"><a href="{% url 'stateview' st.id %}#stateView">View</a></div>
                             </div>
                             <div class="destination_content">
-                                <div class="destination_title"><a href="destinations.html">{{st.name}}</a>
+                                <div class="destination_title"><a href="destinations.html" style="font-family: 'Oswald';">{{st.name}}</a>
                                 </div>
                                 <div class="destination_subtitle text-overflow-elipse">
-                                    <p>{{st.desc}}</p>
+                                    <p style="margin-top: 3px; font-family: 'Oswald'; text-align: justify;">{{st.desc}}</p>
                                 </div> 
                                 {% comment %} <div class="destination_price">From ${{st.price}}</div> {% endcomment %}
                             </div>
