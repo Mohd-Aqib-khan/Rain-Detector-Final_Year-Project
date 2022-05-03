@@ -76,17 +76,16 @@
    height: 6em;
 }
 
-
+/* Sign in sign up start */
 
 input:focus~.floating-label,
-input:not(:focus):valid~.floating-label {
+input:not(:focus) .floating-label {
    top: -17px;
    display: inline-block;
    background-color: white;
-   padding: 0 5px;
+   padding: 0 3px 0 3px;
    color: black;
    border-radius: .5rem;
-
    left: 20px;
    font-size: 1.2rem;
    opacity: 1;
@@ -114,9 +113,11 @@ input:not(:focus):valid~.floating-label {
    position: absolute;
    pointer-events: none;
    left: 22px;
-   top: 11px;
+   top: 15px;
    transition: 0.2s ease all;
 }
+
+/* Signin signup end */
 
 .introduction_p {
    text-align: justify !important;
